@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://libraryEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.lib.web.screens.library">
+    <data>
+        <instance id="libraryDc"
+                  class="com.company.lib.entity.Library">
+            <view extends="_local">
+                <property name="employees" view="_minimal">
+                    <property name="fullName"/>
+                </property>
+                <property name="books" view="_minimal">
+                    <property name="author"/>
+                    <property name="amount"/>
+                </property>
+                <property name="readers" view="_minimal">
+                    <property name="fullName"/>
+                </property>
+            </view>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="libraryDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
