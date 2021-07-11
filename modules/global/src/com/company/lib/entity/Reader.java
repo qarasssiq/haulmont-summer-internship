@@ -1,5 +1,6 @@
 package com.company.lib.entity;
 
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.entity.annotation.OnDeleteInverse;
@@ -10,12 +11,17 @@ import javax.validation.constraints.NotNull;
 
 @Table(name = "LIB_READER")
 @Entity(name = "lib_Reader")
+@NamePattern("%s|firstName")
 public class Reader extends StandardEntity {
     private static final long serialVersionUID = -5339170334777031872L;
 
     @NotNull
     @Column(name = "FULL_NAME", nullable = false)
     private String fullName;
+
+    @NotNull
+    @Column(name = "FIRST_NAME", nullable = false)
+    private String firstName;
 
     @OnDeleteInverse(DeletePolicy.CASCADE)
     @OnDelete(DeletePolicy.CASCADE)
@@ -25,6 +31,14 @@ public class Reader extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "LIBRARY_ID")
     private Library library;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
     public Library getLibrary() {
         return library;
