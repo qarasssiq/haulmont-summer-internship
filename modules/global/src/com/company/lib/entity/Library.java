@@ -5,7 +5,10 @@ import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.global.DeletePolicy;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -27,20 +30,9 @@ public class Library extends StandardEntity {
     @OneToMany(mappedBy = "library")
     private List<Book> books;
 
-    @JoinTable(name = "LIB_READER_LIBRARY_LINK",
-            joinColumns = @JoinColumn(name = "LIBRARY_ID"),
-            inverseJoinColumns = @JoinColumn(name = "READER_ID"))
-    @OnDelete(DeletePolicy.CASCADE)
-    @ManyToMany
+    @OnDelete(DeletePolicy.UNLINK)
+    @OneToMany(mappedBy = "library")
     private List<Reader> readers;
-
-    public List<Reader> getReaders() {
-        return readers;
-    }
-
-    public void setReaders(List<Reader> readers) {
-        this.readers = readers;
-    }
 
     public String getName() {
         return name;
@@ -48,6 +40,14 @@ public class Library extends StandardEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Reader> getReaders() {
+        return readers;
+    }
+
+    public void setReaders(List<Reader> readers) {
+        this.readers = readers;
     }
 
     public List<Book> getBooks() {

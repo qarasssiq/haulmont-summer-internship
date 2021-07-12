@@ -1,6 +1,5 @@
 package com.company.lib.entity;
 
-import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.entity.annotation.OnDeleteInverse;
@@ -9,24 +8,24 @@ import com.haulmont.cuba.core.global.DeletePolicy;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.List;
 
-@Table(name = "LIB_READER_CARD")
-@Entity(name = "lib_ReaderCard")
-@NamePattern("%s|reader")
-public class ReaderCard extends StandardEntity {
-    private static final long serialVersionUID = -5157817310807669731L;
+@Table(name = "LIB_FORM")
+@Entity(name = "lib_Form")
+public class Form extends StandardEntity {
+    private static final long serialVersionUID = 3362006807849095994L;
 
     @NotNull
     @OnDeleteInverse(DeletePolicy.CASCADE)
     @OnDelete(DeletePolicy.CASCADE)
     @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "BOOK_ID")
+    private Book book;
+
+    @OnDeleteInverse(DeletePolicy.CASCADE)
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "READER_ID")
     private Reader reader;
-
-    @OnDeleteInverse(DeletePolicy.UNLINK)
-    @OneToMany(mappedBy = "readerCard")
-    private List<Book> book;
 
     @NotNull
     @Column(name = "TAKEN_DATE", nullable = false)
@@ -34,6 +33,21 @@ public class ReaderCard extends StandardEntity {
 
     @Column(name = "BROUGHT_DATE")
     private LocalDate broughtDate;
+
+    @OnDeleteInverse(DeletePolicy.CASCADE)
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "EMPLOYEE_ID")
+    @NotNull
+    private Employee employee;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 
     public LocalDate getBroughtDate() {
         return broughtDate;
@@ -51,19 +65,19 @@ public class ReaderCard extends StandardEntity {
         this.takenDate = takenDate;
     }
 
-    public List<Book> getBook() {
-        return book;
-    }
-
-    public void setBook(List<Book> book) {
-        this.book = book;
-    }
-
     public Reader getReader() {
         return reader;
     }
 
     public void setReader(Reader reader) {
         this.reader = reader;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 }

@@ -21,15 +21,13 @@ public class Book extends StandardEntity {
     private String name;
 
     @NotNull
-    @OnDeleteInverse(DeletePolicy.CASCADE)
-    @OnDelete(DeletePolicy.CASCADE)
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "BOOK_CARD_ID")
-    private BookCard bookCard;
-
-    @NotNull
     @Column(name = "AUTHOR", nullable = false)
     private String author;
+
+    @OnDeleteInverse(DeletePolicy.CASCADE)
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "book", optional = false)
+    private Form form;
 
     @NotNull
     @Column(name = "AMOUNT", nullable = false)
@@ -40,27 +38,6 @@ public class Book extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "LIBRARY_ID")
     private Library library;
-
-    @OnDelete(DeletePolicy.UNLINK)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "READER_CARD_ID")
-    private ReaderCard readerCard;
-
-    public ReaderCard getReaderCard() {
-        return readerCard;
-    }
-
-    public void setReaderCard(ReaderCard readerCard) {
-        this.readerCard = readerCard;
-    }
-
-    public BookCard getBookCard() {
-        return bookCard;
-    }
-
-    public void setBookCard(BookCard bookCard) {
-        this.bookCard = bookCard;
-    }
 
     public Library getLibrary() {
         return library;
@@ -76,6 +53,14 @@ public class Book extends StandardEntity {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    public Form getForm() {
+        return form;
+    }
+
+    public void setForm(Form form) {
+        this.form = form;
     }
 
     public String getAuthor() {
