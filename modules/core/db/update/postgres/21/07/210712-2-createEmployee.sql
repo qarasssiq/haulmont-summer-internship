@@ -1,0 +1,2 @@
+alter table LIB_EMPLOYEE add constraint FK_LIB_EMPLOYEE_ON_LIBRARY foreign key (LIBRARY_ID) references LIB_LIBRARY(ID);
+create index IDX_LIB_EMPLOYEE_ON_LIBRARY on LIB_EMPLOYEE (LIBRARY_ID);

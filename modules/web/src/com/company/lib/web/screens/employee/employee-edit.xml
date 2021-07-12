@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
-        caption="msg://bookEdit.caption"
+        caption="msg://employeeEdit.caption"
         focusComponent="form"
-        messagesPack="com.company.lib.web.screens.book">
+        messagesPack="com.company.lib.web.screens.employee">
     <data>
-        <instance id="bookDc"
-                  class="com.company.lib.entity.Book">
+        <instance id="employeeDc"
+                  class="com.company.lib.entity.Employee">
             <view extends="_local">
                 <property name="library" view="_minimal"/>
             </view>
@@ -15,11 +15,11 @@
     <dialogMode height="600"
                 width="800"/>
     <layout expand="editActions" spacing="true">
-        <form id="form" dataContainer="bookDc">
+        <form id="form" dataContainer="employeeDc">
             <column width="350px">
-                <textField id="nameField" property="name"/>
-                <textField id="authorField" property="author"/>
-                <textField id="amountField" property="amount"/>
+                <textField id="firstNameField" property="firstName"/>
+                <textField id="lastNameField" property="lastName"/>
+                <textField id="middleNameField" property="middleName"/>
                 <pickerField id="libraryField" property="library">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>

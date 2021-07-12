@@ -3,5 +3,6 @@
     <menu id="application-lib" insertBefore="administration" caption="mainMsg://menu_config.application-lib">
         <item screen="lib_Book.browse" caption="mainMsg://menu_config.lib_Book.browse"/>
         <item screen="lib_Library.browse" caption="mainMsg://menu_config.lib_Library.browse"/>
+        <item screen="lib_Employee.browse" caption="mainMsg://menu_config.lib_Employee.browse"/>
     </menu>
 </menu-config>

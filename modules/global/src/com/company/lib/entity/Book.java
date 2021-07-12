@@ -8,7 +8,6 @@ import com.haulmont.cuba.core.global.DeletePolicy;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
-import java.util.List;
 
 @Table(name = "LIB_BOOK")
 @Entity(name = "lib_Book")
@@ -29,19 +28,18 @@ public class Book extends StandardEntity {
     @PositiveOrZero
     private Integer amount;
 
-    @JoinTable(name = "LIB_BOOK_LIBRARY_LINK",
-            joinColumns = @JoinColumn(name = "BOOK_ID"),
-            inverseJoinColumns = @JoinColumn(name = "LIBRARY_ID"))
     @OnDeleteInverse(DeletePolicy.CASCADE)
-    @ManyToMany
-    private List<Library> library;
+    @JoinColumn(name = "LIBRARY_ID")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @NotNull
+    private Library library;
 
-    public List<Library> getLibrary() {
-        return library;
+    public void setLibrary(Library library) {
+        this.library = library;
     }
 
-    public void setLibrary(List<Library> library) {
-        this.library = library;
+    public Library getLibrary() {
+        return library;
     }
 
     public Integer getAmount() {

@@ -1,49 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
-        caption="msg://libraryBrowse.caption"
-        focusComponent="librariesTable"
-        messagesPack="com.company.lib.web.screens.library">
+        caption="msg://employeeBrowse.caption"
+        focusComponent="employeesTable"
+        messagesPack="com.company.lib.web.screens.employee">
     <data readOnly="true">
-        <collection id="librariesDc"
-                    class="com.company.lib.entity.Library">
+        <collection id="employeesDc"
+                    class="com.company.lib.entity.Employee">
             <view extends="_local">
-                <property name="books" view="_minimal"/>
+                <property name="library" view="_minimal"/>
             </view>
-            <loader id="librariesDl">
+            <loader id="employeesDl">
                 <query>
-                    <![CDATA[select e from lib_Library e]]>
+                    <![CDATA[select e from lib_Employee e]]>
                 </query>
             </loader>
         </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="librariesTable"
+    <layout expand="employeesTable"
             spacing="true">
         <filter id="filter"
-                applyTo="librariesTable"
-                dataLoader="librariesDl">
+                applyTo="employeesTable"
+                dataLoader="employeesDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="librariesTable"
+        <groupTable id="employeesTable"
                     width="100%"
-                    dataContainer="librariesDc">
+                    dataContainer="employeesDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="name"/>
-                <column id="books"/>
+                <column id="firstName"/>
+                <column id="lastName"/>
+                <column id="middleName"/>
+                <column id="library"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="librariesTable.create"/>
-                <button id="editBtn" action="librariesTable.edit"/>
-                <button id="removeBtn" action="librariesTable.remove"/>
+                <button id="createBtn" action="employeesTable.create"/>
+                <button id="editBtn" action="employeesTable.edit"/>
+                <button id="removeBtn" action="employeesTable.remove"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
