@@ -1,0 +1,1 @@
+alter table lib_employee_book_card_link rename to LIB_EMPLOYEE_BOOK_CARD_LINK__U29271 ;

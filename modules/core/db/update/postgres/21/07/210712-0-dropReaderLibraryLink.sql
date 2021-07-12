@@ -1,0 +1,1 @@
+alter table lib_reader_library_link rename to LIB_READER_LIBRARY_LINK__U44031 ;

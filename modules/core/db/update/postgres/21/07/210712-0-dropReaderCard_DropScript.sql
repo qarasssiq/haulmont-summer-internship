@@ -1,0 +1,1 @@
+drop table if exists LIB_READER_CARD__U11096 cascade ;

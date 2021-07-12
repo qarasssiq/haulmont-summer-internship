@@ -2,10 +2,5 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
     <persistence-unit name="lib" transaction-type="RESOURCE_LOCAL">
 
-        <class>com.company.lib.entity.Form</class>
-        <class>com.company.lib.entity.Reader</class>
-        <class>com.company.lib.entity.Book</class>
-        <class>com.company.lib.entity.Employee</class>
-        <class>com.company.lib.entity.Library</class>
     </persistence-unit>
 </persistence>
