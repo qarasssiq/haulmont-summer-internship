@@ -2,6 +2,7 @@ package com.company.lib.entity;
 
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.entity.annotation.OnDeleteInverse;
 import com.haulmont.cuba.core.global.DeletePolicy;
 
@@ -32,6 +33,19 @@ public class Book extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @NotNull
     private Library library;
+
+    @OnDeleteInverse(DeletePolicy.CASCADE)
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "book", optional = false)
+    private BookCard bookCard;
+
+    public BookCard getBookCard() {
+        return bookCard;
+    }
+
+    public void setBookCard(BookCard bookCard) {
+        this.bookCard = bookCard;
+    }
 
     public void setLibrary(Library library) {
         this.library = library;

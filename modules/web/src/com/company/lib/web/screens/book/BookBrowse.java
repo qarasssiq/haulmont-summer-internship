@@ -1,6 +1,10 @@
 package com.company.lib.web.screens.book;
 
+import com.company.lib.entity.BookCard;
+import com.company.lib.web.screens.bookcard.BookCardBrowse;
 import com.haulmont.cuba.core.global.DataManager;
+import com.haulmont.cuba.gui.Notifications;
+import com.haulmont.cuba.gui.ScreenBuilders;
 import com.haulmont.cuba.gui.components.Button;
 import com.haulmont.cuba.gui.components.GroupTable;
 import com.haulmont.cuba.gui.screen.*;
@@ -18,6 +22,10 @@ public class BookBrowse extends StandardLookup<Book> {
     private GroupTable<Book> booksTable;
     @Inject
     private DataManager dataManager;
+    @Inject
+    private ScreenBuilders screenBuilders;
+    @Inject
+    private Notifications notifications;
 
     @Subscribe("removeBtn")
     public void onRemoveBtnClick(Button.ClickEvent event) {
@@ -36,6 +44,18 @@ public class BookBrowse extends StandardLookup<Book> {
                     dataManager.commit(book);
                 }
             }
+        }
+    }
+
+    @Subscribe("bookCardBtn")
+    public void onBookCardBtnClick(Button.ClickEvent event) {
+        if(booksTable.getSingleSelected() != null) {
+            screenBuilders.lookup(BookCard.class, this).withScreenClass(BookCardBrowse.class).build().show();
+        }
+        else {
+            notifications.create()
+                    .withCaption("No selection")
+                    .show();
         }
     }
 }
