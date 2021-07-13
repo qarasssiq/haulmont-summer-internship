@@ -11,7 +11,7 @@ create table LIB_BOOK (
     --
     NAME varchar(255) not null,
     AUTHOR varchar(255) not null,
-    AMOUNT integer not null,
+    AMOUNT integer,
     LIBRARY_ID uuid not null,
     --
     primary key (ID)

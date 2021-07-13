@@ -9,6 +9,7 @@
                     class="com.company.lib.entity.Library">
             <view extends="_local">
                 <property name="books" view="_minimal"/>
+                <property name="employees" view="_minimal"/>
             </view>
             <loader id="librariesDl">
                 <query>
@@ -37,6 +38,7 @@
             <columns>
                 <column id="name"/>
                 <column id="books"/>
+                <column id="employees"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

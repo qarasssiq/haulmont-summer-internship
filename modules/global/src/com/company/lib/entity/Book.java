@@ -23,8 +23,7 @@ public class Book extends StandardEntity {
     @Column(name = "AUTHOR", nullable = false)
     private String author;
 
-    @NotNull
-    @Column(name = "AMOUNT", nullable = false)
+    @Column(name = "AMOUNT")
     @PositiveOrZero
     private Integer amount;
 

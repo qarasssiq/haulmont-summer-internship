@@ -19,7 +19,6 @@
             <column width="350px">
                 <textField id="nameField" property="name"/>
                 <textField id="authorField" property="author"/>
-                <textField id="amountField" property="amount"/>
                 <pickerField id="libraryField" property="library">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>
