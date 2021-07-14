@@ -20,8 +20,6 @@ public class BookEdit extends StandardEditor<Book> {
     @Inject
     private DataManager dataManager;
     @Inject
-    private DataContext dataContext;
-    @Inject
     private TextField<String> nameField;
     @Inject
     private TextField<String> authorField;
@@ -36,16 +34,9 @@ public class BookEdit extends StandardEditor<Book> {
                 .parameter("author", authorField.getValue())
                 .parameter("library", libraryField.getValue().getName())
                 .list();
-        if(books.size() == 1) {
-            books.get(0).setAmount(1);
-            dataManager.commit(books.get(0));
-        }
-        else {
-            Integer old_amount = books.get(0).getAmount();
-            for(Book book: books) {
-                book.setAmount(old_amount + 1);
-                dataManager.commit(book);
-            }
+        for(Book book: books) {
+            book.setAmount(books.size());
+            dataManager.commit(book);
         }
     }
 }

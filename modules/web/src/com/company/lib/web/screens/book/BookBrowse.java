@@ -28,13 +28,10 @@ public class BookBrowse extends StandardLookup<Book> {
                 .parameter("author", deletedBook.getAuthor())
                 .parameter("library", deletedBook.getLibrary().getName())
                 .list();
-        if(books.size() > 1) {
-            Integer old_amount = books.get(0).getAmount();
-            for(Book book: books) {
-                if (!deletedBook.equals(book)){
-                    book.setAmount(old_amount - 1);
-                    dataManager.commit(book);
-                }
+        for(Book book: books) {
+            if (!deletedBook.equals(book)){
+                book.setAmount(books.size() - 1);
+                dataManager.commit(book);
             }
         }
     }

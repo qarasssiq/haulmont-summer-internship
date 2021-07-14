@@ -10,6 +10,7 @@ create table LIB_BOOK (
     DELETED_BY varchar(50),
     --
     NAME varchar(255) not null,
+    IS_TAKEN boolean,
     AUTHOR varchar(255) not null,
     AMOUNT integer,
     LIBRARY_ID uuid not null,
