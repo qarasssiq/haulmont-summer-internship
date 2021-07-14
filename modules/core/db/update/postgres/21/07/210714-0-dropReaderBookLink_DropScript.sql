@@ -1,0 +1,1 @@
+drop table if exists LIB_READER_BOOK_LINK__U30920 cascade ;

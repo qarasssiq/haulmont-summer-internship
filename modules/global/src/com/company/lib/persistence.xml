@@ -5,5 +5,7 @@
         <class>com.company.lib.entity.Book</class>
         <class>com.company.lib.entity.Library</class>
         <class>com.company.lib.entity.Employee</class>
+        <class>com.company.lib.entity.Reader</class>
+        <class>com.company.lib.entity.Record</class>
     </persistence-unit>
 </persistence>

@@ -52,3 +52,42 @@ create table LIB_EMPLOYEE (
     primary key (ID)
 )^
 -- end LIB_EMPLOYEE
+-- begin LIB_RECORD
+create table LIB_RECORD (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    READER_ID uuid not null,
+    LIBRARY varchar(255),
+    TAKEN_DATE date not null,
+    BROUGHT_DATE date,
+    BOOK_ID uuid not null,
+    EMPLOYEE_ID uuid not null,
+    --
+    primary key (ID)
+)^
+-- end LIB_RECORD
+-- begin LIB_READER
+create table LIB_READER (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    FIRST_NAME varchar(255) not null,
+    LAST_NAME varchar(255) not null,
+    MIDDLE_NAME varchar(255) not null,
+    --
+    primary key (ID)
+)^
+-- end LIB_READER

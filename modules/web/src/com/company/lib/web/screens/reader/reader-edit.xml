@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
-        caption="msg://bookEdit.caption"
+        caption="msg://readerEdit.caption"
         focusComponent="form"
-        messagesPack="com.company.lib.web.screens.book">
+        messagesPack="com.company.lib.web.screens.reader">
     <data>
-        <instance id="bookDc"
-                  class="com.company.lib.entity.Book">
+        <instance id="readerDc"
+                  class="com.company.lib.entity.Reader">
             <view extends="_local">
                 <property name="records" view="_minimal">
-                    <property name="reader" view="_minimal"/>
                     <property name="takenDate"/>
                     <property name="broughtDate"/>
+                    <property name="book" view="_minimal">
+                        <property name="library" view="_minimal"/>
+                    </property>
                     <property name="employee" view="_minimal"/>
                 </property>
-                <property name="library" view="_minimal"/>
             </view>
             <loader/>
             <collection id="recordsDc" property="records"/>
@@ -22,19 +23,14 @@
     <dialogMode height="600"
                 width="800"/>
     <layout expand="editActions" spacing="true">
-        <form id="form" dataContainer="bookDc">
+        <form id="form" dataContainer="readerDc">
             <column width="350px">
-                <textField id="nameField" property="name"/>
-                <textField id="authorField" property="author"/>
-                <pickerField id="libraryField" property="library">
-                    <actions>
-                        <action id="lookup" type="picker_lookup"/>
-                        <action id="clear" type="picker_clear"/>
-                    </actions>
-                </pickerField>
+                <textField id="lastNameField" property="lastName"/>
+                <textField id="firstNameField" property="firstName"/>
+                <textField id="middleNameField" property="middleName"/>
             </column>
         </form>
-        <groupBox id="recordsBox" caption="msg://com.company.lib.entity/Book.records">
+        <groupBox id="recordsBox" caption="msg://com.company.lib.entity/Reader.records">
             <table id="recordsTable" dataContainer="recordsDc" width="100%" height="200px">
                 <actions>
                     <action id="create" type="create"/>
@@ -42,7 +38,7 @@
                     <action id="remove" type="remove"/>
                 </actions>
                 <columns>
-                    <column id="reader"/>
+                    <column id="book"/>
                     <column id="takenDate"/>
                     <column id="broughtDate"/>
                     <column id="employee"/>
