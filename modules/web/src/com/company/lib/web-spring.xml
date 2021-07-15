@@ -12,6 +12,7 @@
         <property name="remoteServices">
             <map>
                 <entry key="lib_RecordService" value="com.company.lib.service.RecordService"/>
+                <entry key="lib_BookService" value="com.company.lib.service.BookService"/>
             </map>
         </property>
     </bean>

@@ -38,16 +38,10 @@ public class RecordEdit extends StandardEditor<Record> {
     private Notifications notifications;
 
     @Inject
-    private DataManager dataManager;
-
-    @Inject
     private RecordService recordService;
 
     @Inject
     private PickerField<Reader> readerField;
-
-    @Inject
-    private DataContext dataContext;
 
     @Subscribe
     public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
@@ -77,13 +71,4 @@ public class RecordEdit extends StandardEditor<Record> {
             event.preventCommit();
         }
     }
-
-    /*
-    @Subscribe
-    public void onInit(InitEvent event, Map<String, Object> params) {
-        Boolean isTaken = false;
-        PickerField.LookupAction action = bookField.getActionNN("lookup");
-        action.setLookupScreenParams("isTaken", isTaken);
-    }
-     */
 }

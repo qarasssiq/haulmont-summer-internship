@@ -1,5 +1,7 @@
 package com.company.lib.web.screens.book;
 
+import com.company.lib.service.BookService;
+import com.company.lib.service.RecordService;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.gui.components.Button;
 import com.haulmont.cuba.gui.components.GroupTable;
@@ -16,8 +18,12 @@ import java.util.List;
 public class BookBrowse extends StandardLookup<Book> {
     @Inject
     private GroupTable<Book> booksTable;
+
     @Inject
     private DataManager dataManager;
+
+    @Inject
+    private BookService bookService;
 
     @Subscribe("removeBtn")
     public void onRemoveBtnClick(Button.ClickEvent event) {
@@ -36,4 +42,17 @@ public class BookBrowse extends StandardLookup<Book> {
             }
         }
     }
+
+    @Subscribe
+    public void onInit(InitEvent event) {
+        List<Book> books = dataManager.load(Book.class)
+                .query("select e from lib_Book e")
+                .list();
+        for(Book book: books) {
+            book.setIsTaken(bookService.isTaken(book));
+            dataManager.commit(book);
+        }
+    }
+
+
 }
