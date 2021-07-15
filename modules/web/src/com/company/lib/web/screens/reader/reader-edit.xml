@@ -5,17 +5,7 @@
         messagesPack="com.company.lib.web.screens.reader">
     <data>
         <instance id="readerDc"
-                  class="com.company.lib.entity.Reader">
-            <view extends="_local">
-                <property name="records" view="_minimal">
-                    <property name="takenDate"/>
-                    <property name="broughtDate"/>
-                    <property name="book" view="_minimal">
-                        <property name="library" view="_minimal"/>
-                    </property>
-                    <property name="employee" view="_minimal"/>
-                </property>
-            </view>
+                  class="com.company.lib.entity.Reader" view="reader-view">
             <loader/>
             <collection id="recordsDc" property="records"/>
         </instance>

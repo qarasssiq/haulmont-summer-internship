@@ -6,8 +6,8 @@
     <data>
         <instance id="employeeDc"
                   class="com.company.lib.entity.Employee">
-            <view extends="_local">
-                <property name="library" view="_minimal"/>
+            <view extends="employee-view">
+                <property name="library" view="_local"/>
             </view>
             <loader/>
         </instance>

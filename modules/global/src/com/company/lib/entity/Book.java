@@ -1,6 +1,7 @@
 package com.company.lib.entity;
 
 import com.haulmont.chile.core.annotations.Composition;
+import com.haulmont.chile.core.annotations.MetaProperty;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.config.defaults.Default;
 import com.haulmont.cuba.core.config.defaults.DefaultBoolean;
@@ -46,8 +47,18 @@ public class Book extends StandardEntity {
     @NotNull
     private Library library;
 
+    @Transient
+    @MetaProperty(related = {"records"})
     public Boolean getIsTaken() {
-        return isTaken;
+        if(records == null)
+            return false;
+        else {
+            for (Record record : records) {
+                if (record.getBroughtDate() == null)
+                    return true;
+            }
+        }
+        return false;
     }
 
     public void setIsTaken(Boolean isTaken) {

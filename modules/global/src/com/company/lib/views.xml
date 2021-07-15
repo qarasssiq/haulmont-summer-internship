@@ -1,4 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
 
+    <view entity="lib_Record" name="record-view" extends="_local">
+        <property name="book" view="_minimal">
+            <property name="isTaken"/>
+            <property name="library" view="_minimal"/>
+            <property name="records" view="_minimal"/>
+        </property>
+        <property name="employee" view="_minimal">
+            <property name="library" view="_minimal"/>
+        </property>
+        <property name="reader" view="_minimal"/>
+    </view>
+    <view entity="lib_Employee" name="employee-view" extends="_local">
+        <property name="library" view="_minimal"/>
+    </view>
+    <view entity="lib_Library" name="library-view" extends="_local"/>
+    <view entity="lib_Book" name="book-view" extends="_local">
+        <property name="library" view="_minimal"/>
+        <property name="records" view="_minimal">
+            <property name="broughtDate"/>
+            <property name="takenDate"/>
+        </property>
+    </view>
+    <view entity="lib_Reader" name="reader-view" extends="_local">
+        <property name="records" view="_minimal">
+            <property name="reader" view="_minimal"/>
+            <property name="book" view="_minimal"/>
+            <property name="takenDate"/>
+            <property name="broughtDate"/>
+            <property name="employee" view="_minimal"/>
+        </property>
+    </view>
 </views>

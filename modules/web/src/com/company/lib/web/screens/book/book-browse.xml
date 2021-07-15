@@ -6,10 +6,7 @@
         messagesPack="com.company.lib.web.screens.book">
     <data readOnly="true">
         <collection id="booksDc"
-                    class="com.company.lib.entity.Book">
-            <view extends="_local">
-                <property name="library" view="_minimal"/>
-            </view>
+                    class="com.company.lib.entity.Book" view="book-view">
             <loader id="booksDl">
                 <query>
                     <![CDATA[select e from lib_Book e]]>
@@ -39,6 +36,7 @@
                 <column id="author"/>
                 <column id="amount"/>
                 <column id="library"/>
+                <column id="isTaken"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

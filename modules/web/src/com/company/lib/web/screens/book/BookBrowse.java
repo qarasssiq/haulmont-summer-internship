@@ -23,7 +23,8 @@ public class BookBrowse extends StandardLookup<Book> {
     public void onRemoveBtnClick(Button.ClickEvent event) {
         Book deletedBook = booksTable.getSingleSelected();
         List<Book> books = dataManager.load(Book.class)
-                .query("select e from lib_Book e where e.name = :name and e.author = :author and e.library.name = :library")
+                .query("select e from lib_Book e where " +
+                        "e.name = :name and e.author = :author and e.library.name = :library")
                 .parameter("name", deletedBook.getName())
                 .parameter("author", deletedBook.getAuthor())
                 .parameter("library", deletedBook.getLibrary().getName())
