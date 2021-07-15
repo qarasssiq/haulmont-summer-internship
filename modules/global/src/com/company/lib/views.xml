@@ -15,7 +15,14 @@
     <view entity="lib_Employee" name="employee-view" extends="_local">
         <property name="library" view="_minimal"/>
     </view>
-    <view entity="lib_Library" name="library-view" extends="_local"/>
+    <view entity="lib_Library" name="library-view" extends="_local">
+        <property name="books" view="_minimal">
+            <property name="records" view="_minimal">
+                <property name="reader" view="_minimal"/>
+            </property>
+        </property>
+        <property name="employees" view="_minimal"/>
+    </view>
     <view entity="lib_Book" name="book-view" extends="_local">
         <property name="library" view="_minimal"/>
         <property name="records" view="_minimal">

@@ -6,11 +6,7 @@
         messagesPack="com.company.lib.web.screens.library">
     <data readOnly="true">
         <collection id="librariesDc"
-                    class="com.company.lib.entity.Library">
-            <view extends="_local">
-                <property name="books" view="_minimal"/>
-                <property name="employees" view="_minimal"/>
-            </view>
+                    class="com.company.lib.entity.Library" view="library-view">
             <loader id="librariesDl">
                 <query>
                     <![CDATA[select e from lib_Library e]]>
