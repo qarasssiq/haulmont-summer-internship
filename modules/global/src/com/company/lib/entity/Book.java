@@ -3,8 +3,6 @@ package com.company.lib.entity;
 import com.haulmont.chile.core.annotations.Composition;
 import com.haulmont.chile.core.annotations.MetaProperty;
 import com.haulmont.chile.core.annotations.NamePattern;
-import com.haulmont.cuba.core.config.defaults.Default;
-import com.haulmont.cuba.core.config.defaults.DefaultBoolean;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.entity.annotation.OnDeleteInverse;
