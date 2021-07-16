@@ -27,12 +27,21 @@ public class RecordServiceBean implements RecordService {
     }
 
     @Override
-    public boolean isBookAlreadyTaken(Book book) {
+    public boolean isBookAlreadyTaken(Reader reader, Book book, Record record) {
+        List <Record> records = dataManager.load(Record.class)
+                .query("select e from lib_Record e where e.reader = :reader and" +
+                        " e.book = :book and e.broughtDate is null")
+                .parameter("reader", reader)
+                .parameter("book", book)
+                .list();
+        if (records.size() != 0)
+            if(records.get(0).equals(record))
+                return false;
         return book.getIsTaken();
     }
 
     @Override
-    public boolean isBookAlreadyTakenByReader(Reader reader, Book book) {
+    public boolean isBookAlreadyTakenByReader(Reader reader, Book book, Record record) {
         List <Record> records = dataManager.load(Record.class)
                 .query("select e from lib_Record e where e.reader = :reader and" +
                         " e.book.name = :bookName and e.book.author = :bookAuthor and e.broughtDate is null")
@@ -40,6 +49,6 @@ public class RecordServiceBean implements RecordService {
                 .parameter("bookName", book.getName())
                 .parameter("bookAuthor", book.getAuthor())
                 .list();
-        return !(records.size() == 0);
+        return !(records.size() == 0 || records.get(0).equals(record));
     }
 }

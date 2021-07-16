@@ -3,6 +3,7 @@ package com.company.lib.service;
 import com.company.lib.entity.Book;
 import com.company.lib.entity.Employee;
 import com.company.lib.entity.Reader;
+import com.company.lib.entity.Record;
 
 import java.time.LocalDate;
 
@@ -13,7 +14,7 @@ public interface RecordService {
 
     boolean isLibraryTheSame(Book book, Employee employee);
 
-    boolean isBookAlreadyTaken(Book book);
+    boolean isBookAlreadyTaken(Reader reader, Book book, Record record);
 
-    boolean isBookAlreadyTakenByReader(Reader reader, Book book);
+    boolean isBookAlreadyTakenByReader(Reader reader, Book book, Record record);
 }

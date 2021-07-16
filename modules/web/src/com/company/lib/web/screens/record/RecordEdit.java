@@ -46,13 +46,13 @@ public class RecordEdit extends StandardEditor<Record> {
     @Subscribe
     public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
         Book book = bookField.getValue();
-        if (recordService.isBookAlreadyTaken(book)) {
+        if (recordService.isBookAlreadyTaken(readerField.getValue(), book, getEditedEntity())) {
             notifications.create()
                     .withCaption("This book is already taken!")
                     .show();
             event.preventCommit();
         }
-        if (recordService.isBookAlreadyTakenByReader(readerField.getValue(), book)) {
+        if (recordService.isBookAlreadyTakenByReader(readerField.getValue(), book, getEditedEntity())) {
             notifications.create()
                     .withCaption("This book is already taken by this reader!")
                     .show();
